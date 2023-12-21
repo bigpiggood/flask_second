@@ -76,7 +76,26 @@ app.logger.setLevel(logging.DEBUG)
 
 @app.route("/contact")
 def contact():
-  return render_template("contact.html")
+
+  # 응답 객체 취득
+  response = make_response(render_template("contact.html"))
+  # 쿠키 설정
+  response.set_cookie("flask key", "flask value")
+  # 세션 설정
+  session["username"] = "AK"
+
+  return response
+  # return render_template("contact.html")
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route("/contact/complete", methods=['GET', 'POST'])
